@@ -1,0 +1,42 @@
+
+.image-slider-wrapper{
+    position:relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+#image_slider{
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    padding:0;
+    margin: 0;
+}
+#image_slider li{
+    position:relative;
+    max-width: 100%;
+    float:left;
+    list-style: none;
+    left: 0;
+}
+
+.nav_box{
+    position: relative;
+    height: 100%;
+}
+.nvgt{
+    height: 100%;
+    width: 30px;
+    opacity: 0.1;
+    cursor: pointer;
+}
+.nvgt:hover{
+    opacity: 0.4;
+}
+#prev{
+    background: #000 url('images/left.png') no-repeat center;
+    float: left;
+}
+#next{
+    background: #000 url('images/right.png') no-repeat center;
+    float: right;
+}
