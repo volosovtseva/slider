@@ -3,6 +3,9 @@ var imageWidth;
 var currentImage = 0;
 var imageNumber;
 var slider;
+var timer;
+var prevButton;
+var nextButton;
 
 function init() {
 
@@ -12,21 +15,33 @@ function init() {
     imageWidth = slidesLi[0].children[0].clientWidth;
 
     slider.style.width = parseInt(imageWidth * imageNumber) + "px";
-    slider.parentNode.style.height = parseInt(slidesLi[0].children[0].clientHeight) + "px";
-    slider.parentNode.style.width = imageWidth + "px";
+    sliderBox = slider.parentNode;
+    sliderBox.style.height = parseInt(slidesLi[0].children[0].clientHeight) + "px";
+    sliderBox.style.width = imageWidth + "px";
 
-    setTimeout(function () {
-        SliderFunction();
-    }, 3000);
+    timer = setInterval(SliderFunction, 3000);
 
-    var prevButton = document.getElementById("prev");
-    var nextButton = document.getElementById("next");
+    prevButton = document.getElementById("prev");
+    nextButton = document.getElementById("next");
 
     prevButton.onclick = function () { prevButtonClick(); };
     nextButton.onclick = function () { nextButtonClick(); };
 
-}
+    sliderBox.onmouseover = mouseOver;
+    sliderBox.onmouseout = mouseOut;
 
+
+}
+function mouseOut(){
+    prevButton.style.visibility = "";
+    nextButton.style.visibility = "";
+    timer = setInterval(SliderFunction, 3000);
+}
+function mouseOver(){
+    prevButton.style.visibility = "visible";
+    nextButton.style.visibility = "visible";
+    clearInterval(timer);
+}
 function nextButtonClick(){
     if (currentImage < imageNumber-1){
         currentImage++;
@@ -62,10 +77,6 @@ function SliderFunction() {
         slider.style.left = left + "px";
         currentImage = 0;
     }
-
-    setTimeout(function () {
-        SliderFunction();
-    }, 3000);
 }
 
 window.onload = init;

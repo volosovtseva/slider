@@ -28,9 +28,8 @@
     width: 30px;
     opacity: 0.1;
     cursor: pointer;
-}
-.nvgt:hover{
-    opacity: 0.4;
+    visibility: hidden;
+
 }
 #prev{
     background: #000 url('images/left.png') no-repeat center;
