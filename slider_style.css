@@ -28,7 +28,9 @@
     width: 30px;
     opacity: 0.1;
     cursor: pointer;
-    display: none;
+}
+.nvgt:hover{
+    opacity: 0.2;
 }
 #prev{
     background: #000 url('images/left.png') no-repeat center;
@@ -43,7 +45,6 @@ ul#pages{
     bottom: 0;
     width: 100%;
     text-align: center;
-    display: none;
     margin: 0;
     padding: 0;
 }
@@ -52,13 +53,12 @@ li.page{
     height: 10px;
     width: 10px;
     list-style: none;
-    background-color: #fff;
     border: 1px solid #333;
     border-radius: 10px;
     opacity: 0.5;
     margin-left: 10px;
 }
-li.page:first-child{margin-left: 0;
+li.page:first-child{margin-left: 0;background-color: #333;
 }
 li.page:hover{
     opacity: 0.9;

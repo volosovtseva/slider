@@ -6,7 +6,18 @@ var slider;
 var timer;
 var prevButton;
 var nextButton;
-var pages;
+
+
+
+var dots;
+
+var configuration = {
+    showControll: true,
+    showDots: true,
+    auto: true,
+    error: function(){alert("Function Init doesn't work properly. Please choose at least one configuration parameter.");}
+};
+
 
 function init() {
 
@@ -16,86 +27,217 @@ function init() {
     imageWidth = slidesLi[0].children[0].clientWidth;
 
     slider.style.width = parseInt(imageWidth * imageNumber) + "px";
-    sliderBox = slider.parentNode;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var sliderBox = slider.parentNode;
     sliderBox.style.height = parseInt(slidesLi[0].children[0].clientHeight) + "px";
     sliderBox.style.width = imageWidth + "px";
 
-    pages = document.getElementById("pages");
-    for (i = 0; i < imageNumber; i++) {
-        var liPage = document.createElement("li");
-        liPage.className = "page";
-        liPage.id = i;
-        pages.appendChild(liPage);
-    }
+    if(configuration.showDots || configuration.showControll || configuration.auto) {
 
-    prevButton = document.getElementById("prev");
-    nextButton = document.getElementById("next");
+        if (configuration.showDots) {
 
-    timer = setInterval(SliderFunction, 3000);
+            var pages = document.getElementById("pages");
+            for (i = 0; i < imageNumber; i++) {
+                var liPage = document.createElement("li");
+                liPage.className = "page";
+                liPage.id = i;
+                pages.appendChild(liPage);
+            };
 
-    pages.onclick = function () { goToImage(event); };
+            dots = pages.children;
+            for(i = 0; i < imageNumber; i++){
+                dots[i].onclick = function () { dotsClick(event); };
+            };
 
-    prevButton.onclick = function () { prevButtonClick(); };
-    nextButton.onclick = function () { nextButtonClick(); };
 
-    sliderBox.onmouseover = mouseOver;
-    sliderBox.onmouseout = mouseOut;
+            if (configuration.auto) {
+                sliderBox.onmouseover = mouseOver;
+                sliderBox.onmouseout = mouseOut;
+            };
+        };
+
+        if (configuration.showControll) {
+
+            prevButton = document.getElementById("prev");
+            nextButton = document.getElementById("next");
+
+            prevButton.onclick = function () {
+                prevButtonClick();
+            };
+            nextButton.onclick = function () {
+                nextButtonClick();
+            };
+
+            if (configuration.auto) {
+                sliderBox.onmouseover = mouseOver;
+                sliderBox.onmouseout = mouseOut;
+            };
+        };
+
+        if (configuration.auto) {
+            timer = setInterval(autoSlider, 3000);
+        };
+
+    }else{
+        configuration.error();
+    };
 }
 
 
-function goToImage(event){
+function dotsClick(event){
+    changeDotsColor("#ffffff");
+
     var page = event.target;
     currentImage = page.id;
     left = currentImage * imageWidth * (-1);
     slider.style.left = left + "px";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    changeDotsColor("#333333");
 }
 function mouseOut(){
-    pages.style.display = "";
-    prevButton.style.display = "";
-    nextButton.style.display = "";
-    timer = setInterval(SliderFunction, 3000);
+    timer = setInterval(autoSlider, 3000);
 }
 function mouseOver(){
-    pages.style.display = "block";
-    prevButton.style.display = "block";
-    nextButton.style.display = "block";
     clearInterval(timer);
 }
 function nextButtonClick(){
+    if(configuration.showDots){
+        changeDotsColor("#ffffff");
+    };
+
     if (currentImage < imageNumber-1){
         currentImage++;
         left = currentImage * imageWidth * (-1);
         slider.style.left = left + "px";
 
+
+
+        if(configuration.showDots){
+            changeDotsColor("#333333");
+        };
+
     }else if(currentImage == imageNumber-1) {
         left = 0;
         slider.style.left = left + "px";
         currentImage = 0;
-    }
+
+
+
+
+
+        if(configuration.showDots){
+            changeDotsColor("#333333");
+        };
+    };
 }
 function prevButtonClick(){
+    if(configuration.showDots){
+        changeDotsColor("#ffffff");
+    };
+
     if(currentImage == 0){
         currentImage = imageNumber-1;
         left = currentImage * imageWidth * (-1);
         slider.style.left = left + "px";
+
+
+        if(configuration.showDots){
+            changeDotsColor("#333333");
+        };
+
+
     }else{
         currentImage--;
         left = currentImage * imageWidth * (-1);
-        slider.style.left = left + "px";
-    }
+       slider.style.left = left + "px";
+
+
+
+
+
+
+
+        if(configuration.showDots){
+            changeDotsColor("#333333");
+        };
+    };
 }
 
-function SliderFunction() {
+function autoSlider() {
+    if(configuration.showDots){
+        changeDotsColor("#ffffff");
+    };
 
     if(currentImage < imageNumber-1) {
         currentImage++;
         left = (currentImage) * imageWidth * (-1);
         slider.style.left = left + "px";
+
+
+        if(configuration.showDots){
+            changeDotsColor("#333333");
+        };
+
     }else if(currentImage == imageNumber-1){
         left = 0;
         slider.style.left = left + "px";
         currentImage = 0;
-    }
+
+
+
+        if(configuration.showDots){
+            changeDotsColor("#333333");
+        };
+    };
+
+}
+function changeDotsColor(color){
+    var dot = dots[currentImage];
+    dot.style.backgroundColor = color;
+
 }
 
 window.onload = init;
