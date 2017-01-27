@@ -6,9 +6,6 @@ var slider;
 var timer;
 var prevButton;
 var nextButton;
-
-
-
 var dots;
 
 var configuration = {
@@ -18,7 +15,6 @@ var configuration = {
     error: function(){alert("Function Init doesn't work properly. Please choose at least one configuration parameter.");}
 };
 
-
 function init() {
 
     slider = document.getElementById("image_slider");
@@ -27,35 +23,6 @@ function init() {
     imageWidth = slidesLi[0].children[0].clientWidth;
 
     slider.style.width = parseInt(imageWidth * imageNumber) + "px";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     var sliderBox = slider.parentNode;
     sliderBox.style.height = parseInt(slidesLi[0].children[0].clientHeight) + "px";
     sliderBox.style.width = imageWidth + "px";
@@ -114,27 +81,10 @@ function init() {
 
 function dotsClick(event){
     changeDotsColor("#ffffff");
-
     var page = event.target;
     currentImage = page.id;
     left = currentImage * imageWidth * (-1);
     slider.style.left = left + "px";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     changeDotsColor("#333333");
 }
 function mouseOut(){
@@ -147,27 +97,17 @@ function nextButtonClick(){
     if(configuration.showDots){
         changeDotsColor("#ffffff");
     };
-
     if (currentImage < imageNumber-1){
         currentImage++;
         left = currentImage * imageWidth * (-1);
         slider.style.left = left + "px";
-
-
-
         if(configuration.showDots){
             changeDotsColor("#333333");
         };
-
     }else if(currentImage == imageNumber-1) {
         left = 0;
         slider.style.left = left + "px";
         currentImage = 0;
-
-
-
-
-
         if(configuration.showDots){
             changeDotsColor("#333333");
         };
@@ -177,29 +117,18 @@ function prevButtonClick(){
     if(configuration.showDots){
         changeDotsColor("#ffffff");
     };
-
     if(currentImage == 0){
         currentImage = imageNumber-1;
         left = currentImage * imageWidth * (-1);
         slider.style.left = left + "px";
-
-
         if(configuration.showDots){
             changeDotsColor("#333333");
         };
 
-
     }else{
         currentImage--;
         left = currentImage * imageWidth * (-1);
-       slider.style.left = left + "px";
-
-
-
-
-
-
-
+        slider.style.left = left + "px";
         if(configuration.showDots){
             changeDotsColor("#333333");
         };
@@ -210,24 +139,17 @@ function autoSlider() {
     if(configuration.showDots){
         changeDotsColor("#ffffff");
     };
-
     if(currentImage < imageNumber-1) {
         currentImage++;
         left = (currentImage) * imageWidth * (-1);
         slider.style.left = left + "px";
-
-
         if(configuration.showDots){
             changeDotsColor("#333333");
         };
-
     }else if(currentImage == imageNumber-1){
         left = 0;
         slider.style.left = left + "px";
         currentImage = 0;
-
-
-
         if(configuration.showDots){
             changeDotsColor("#333333");
         };
@@ -237,7 +159,6 @@ function autoSlider() {
 function changeDotsColor(color){
     var dot = dots[currentImage];
     dot.style.backgroundColor = color;
-
 }
 
 window.onload = init;
