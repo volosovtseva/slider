@@ -33,14 +33,14 @@
     opacity: 0.2;
 }
 #prev{
-    background: #000 url('images/left.png') no-repeat center;
+    background: #000 url('../images/left.png') no-repeat center;
     float: left;
 }
 #next{
-    background: #000 url('images/right.png') no-repeat center;
+    background: #000 url('../images/right.png') no-repeat center;
     float: right;
 }
-<<<<<<< HEAD:slider_style.css
+
 ul#pages{
     position: absolute;
     bottom: 0;
@@ -64,5 +64,4 @@ li.page:first-child{margin-left: 0;background-color: #333;
 li.page:hover{
     opacity: 0.9;
 }
-=======
->>>>>>> 429e8f54447671ff5d989c249223c4c135da2f59:style/style.css
+
